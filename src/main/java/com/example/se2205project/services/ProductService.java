@@ -26,6 +26,12 @@ public class ProductService implements IProductService {
         return null;
     }
 
+    public List<Product> getByName(String name) {
+        var p = productRepository.findByName(name);
+
+        return p;
+    }
+
     @Override
     public Product create(Product product) {
         return productRepository.save(product);

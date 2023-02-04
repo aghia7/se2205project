@@ -20,7 +20,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping("/{id}")
     public ResponseEntity<Product> getProduct(@PathVariable int id) {
         Product p = productService.getById(id);
         if (p == null) {
@@ -40,6 +40,13 @@ public class ProductController {
     public ResponseEntity<List<Product>> getAllProducts() {
         var list = productService.getAll();
         return new ResponseEntity<>(list, HttpStatus.OK);
+    }
+
+    @GetMapping("by_name/{name}")
+    public ResponseEntity<List<Product>> getProductByName(@PathVariable String name) {
+        var p = productService.getByName(name);
+
+        return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
 }
